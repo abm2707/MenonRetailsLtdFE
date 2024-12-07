@@ -1,0 +1,58 @@
+/* Dimmed background overlay */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Pop-up content box */
+  .popup-content {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  /* Title styling */
+  .popup-title {
+    color: #d32f2f; /* Red for error-like titles */
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  /* Description styling */
+  .popup-description {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  /* Button styling */
+  .popup-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .popup-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Fade-in animation for smooth appearance */
+  @keyfram
+  

@@ -1,0 +1,64 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+}
+
+.Sidebar {
+  width: 20%;
+  height: 100%;
+  background-color: #2f4050;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box; /* Ensure padding and border stay inside the sidebar */
+}
+
+.SideBarList {
+  width: 100%;
+  height: 100%;
+  padding: 0; /* Remove any padding */
+  margin: 0; /* Remove any margin */
+  list-style: none; /* Remove default list styling */
+  box-sizing: border-box;
+}
+
+.SideBarList .SideBarItems {
+  width: 100%; /* Take full width of the sidebar */
+  height: 70px; /* Consistent height */
+  margin: 0; /* No extra margins */
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  padding: 0; /* Remove padding */
+  box-sizing: border-box; /* Ensure no overflow from padding or border */
+}
+
+.SideBarList .SideBarItems:hover {
+  background-color: #293846;
+  cursor: pointer;
+  width: 100%; /* Ensure hover effect matches sidebar width */
+  height: 70px; /* Match the height of the item */
+  box-sizing: border-box; /* Prevent any unintended overflow */
+}
+
+.Sidebar-icon {
+  margin-right: 10px; /* Space between icon and title */
+  color: azure;
+}
+
+.Sidebar-title {
+  color: white;
+  font-size: 12px;
+  margin: 0; /* No extra margin */
+  font-family: 'Trebuchet MS', Arial, sans-serif;
+}
+
+.Menu-Header {
+  width: 100%; /* Full width of sidebar */
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  padding: 5px 0; /* Spacing within header */
+  box-sizing: border-box; /* Consistent dimensions */
+}
