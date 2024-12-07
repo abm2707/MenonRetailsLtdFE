@@ -3,7 +3,7 @@ import SellerRegistrationScreen from "./SellerRegistrationTab";
 import SellerAccounts from "./SellerAccounts";
 import SellerValidations from "./SellerValidations";
 import SellerUploads from "./SellerUploads";
-
+//To Push the code
 export default function SellerRegTabs() {
     const [showTab, setShowTab] = useState("Registration");
     const [fade, setFade] = useState(false); 
