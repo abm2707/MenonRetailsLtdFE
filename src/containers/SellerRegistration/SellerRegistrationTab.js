@@ -2,6 +2,8 @@ import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useRef } from 'react';
+import { useEffect } from 'react';
+
 export default function SellerRegistrationScreen({setShowTab}){
     const nav = useNavigate();
 
@@ -17,13 +19,37 @@ export default function SellerRegistrationScreen({setShowTab}){
     var savedAtDB = "";
 
     function GoForward(){
-        setShowTab("Accounts");
-       console.log(businessName.current.value)
-       console.log(ownerName.current.value)
-       saveSellerProfile();
+        const sellerProfileData = {
+            businessName: businessName.current.value,
+            ownerName: ownerName.current.value,
+            businessType: businessType.current.value,
+            phoneNumber: phoneNumber.current.value,
+            address: address.current.value,
+            emailAddress: emailAddress.current.value,
+            pinZipCode: pinZipCode.current.value,
+            stateRegion: stateRegion.current.value,
+            country: country.current.value,
+        };
+       localStorage.setItem('sellerProfileData', JSON.stringify(sellerProfileData));
+       setShowTab("Accounts");
     }
 
-    async function saveSellerProfile(){
+        useEffect(()=> {
+            const savedData = JSON.parse(localStorage.getItem("sellerProfileData")) || {};
+        if (savedData) {
+            businessName.current.value = savedData.businessName || "";
+            ownerName.current.value = savedData.ownerName || "";
+            businessType.current.value = savedData.businessType || "";
+            phoneNumber.current.value = savedData.phoneNumber || "";
+            address.current.value = savedData.address || "";
+            emailAddress.current.value = savedData.emailAddress || "";
+            pinZipCode.current.value = savedData.pinZipCode || "";
+            stateRegion.current.value = savedData.stateRegion || "";
+            country.current.value = savedData.country || "";
+        }
+        },[])
+
+        /*async function saveSellerProfile(){
         try{
             console.log("Saving seller profile")
             const token = localStorage.getItem("jwtToken");
@@ -57,9 +83,9 @@ export default function SellerRegistrationScreen({setShowTab}){
             savedAtDB = value.split(",")[1];
         }catch (error){
             console.error("Error while saving seller profile",error);
-        }
-    }
-    
+        } 
+    }*/
+
     return(
         <>
         <div className='font-bold text-gray-500 pl-10'>
@@ -90,7 +116,4 @@ export default function SellerRegistrationScreen({setShowTab}){
         </div>
         </>
     )
-
-  
-
 }

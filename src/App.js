@@ -17,7 +17,7 @@ import SellerRegistrationScreen from "./containers/SellerRegistration/SellerRegi
 import SellerAccounts from "./containers/SellerRegistration/SellerAccounts";
 import SellerValidations from "./containers/SellerRegistration/SellerValidations";
 import SellerUploads from "./containers/SellerRegistration/SellerUploads";
-
+import ViewClaims from "./containers/Claims/viewClaims";
 
 function App() {
 
@@ -80,6 +80,19 @@ function App() {
     {
       path:'/',
       element:<LoginNew />
+    },
+    {
+      path:'/SellerManagementPortal',
+      element:<SellerManagement />
+    },
+    {
+      path:'/viewClaims',
+      element:(
+        <>
+        <HeaderV002 />,
+        <ViewClaims />
+        </>
+        )
     }
   ]);
 

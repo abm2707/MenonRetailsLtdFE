@@ -3,6 +3,7 @@ import React from "react";
 import HeaderV002 from "../containers/HeaderV002";
 import { useNavigate } from "react-router-dom";
 import SellerRegPortal from "./SellerRegPortal";
+import viewClaims from "../containers/Claims/viewClaims";
 
 function SellerManagement() {
     const nav = useNavigate();
@@ -69,7 +70,7 @@ function SellerManagement() {
                         </Button>
                         <Button
                             className="w-[35%] h-16 bg-white shadow-lg rounded-lg p-1 mt-2 ml-1 cursor-pointer hover:shadow-xl transform transition-all duration-300 m-9"
-                            onClick={() => alert("Add Seller clicked")}
+                            onClick={handleviewClaims}
                         >
                             Claims Settlements
                         </Button>
@@ -126,7 +127,11 @@ function SellerManagement() {
     );
 
     function handleNewSellerRegistration(){
-        nav('/SellerRegPortal');
+        nav('/SellerRegistrationScreen');
+    }
+
+    function handleviewClaims(){
+        nav('/viewClaims');
     }
 
 }

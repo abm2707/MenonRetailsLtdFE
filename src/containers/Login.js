@@ -68,7 +68,7 @@ function Login({setIsLoggedIn, setLoginPayload}) {
           setJwtToken(token);  
           localStorage.setItem("jwtToken",token)
           // setIsLoggedIn(true)
-          nav("/Home")
+          nav("/SellerRegistrationScreen")
           setLoginPayload(otpPayload);
         })
         .catch((error) => {

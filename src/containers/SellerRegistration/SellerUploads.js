@@ -1,17 +1,34 @@
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import ConfirmationPopup from '../../popUpScreens/ProceedingConfirmation';
+import { useState } from 'react';
 
 export default function SellerUploads({setShowTab}) {
+    const [open, setOpen] = useState(false);
     const nav = useNavigate();
 
     async function GoForward() {
-        setShowTab("Registration");
+        //setShowTab("Registration");
+        setOpen(true);
     }
 
     async function GoBackward() {
         setShowTab("Validations");
     }
+
+    const handleOpen = () => {
+        setOpen(true); 
+    };
+
+    const handleClosePopup = () => {
+        setOpen(false); 
+    };
+
+    const handleConfirmPopup = () => {
+        setOpen(false); 
+        setShowTab("Registration"); 
+    };
 
     return (
         <>
@@ -74,6 +91,9 @@ export default function SellerUploads({setShowTab}) {
                         onClick={GoForward}>
                         Next
                     </button>
+                </div>
+                <div>
+                    {open && <ConfirmationPopup openingVal={setOpen} />}
                 </div>
             </div>
         </>

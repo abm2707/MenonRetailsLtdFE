@@ -20,6 +20,4 @@ function InvalidCreds({type,desc,onClose}) {
 
 }
 
-
-
 export default InvalidCreds;
