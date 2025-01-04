@@ -10,24 +10,23 @@ import { RouterProvider,createBrowserRouter } from "react-router-dom";
 import LoginNew from "./containers/LoginNewV002";
 import SignUp from "./containers/SignUp";
 import HomeScreen from "./containers/homeScreen";
-import SellerManagement from "./Screens/SellerManagementScreens";
-import SellerRegPortal from "./Screens/SellerRegPortal";
-import SellerRegTabs from "./containers/SellerRegistration/SellerRegComponents";
-import SellerRegistrationScreen from "./containers/SellerRegistration/SellerRegistrationTab";
+import SellerManagement from "./containers/SellerRegistration/SellerManagementScreens";
+import SellerRegPortal from "./containers/SellerRegistration/SellerRegPortal";
+import SellerRegTabs from "./containers/ComponentBuildScreen/SellerRegComponents";
 import SellerAccounts from "./containers/SellerRegistration/SellerAccounts";
 import SellerValidations from "./containers/SellerRegistration/SellerValidations";
 import SellerUploads from "./containers/SellerRegistration/SellerUploads";
 import ViewClaims from "./containers/Claims/viewClaims";
+import Sidebar from "./containers/SideBar";
 
 function App() {
 
   const router1 = createBrowserRouter([
     {
-      path:'/SellerRegistrationScreen',
+      path:'/SellerRegistration',
       element:(
       <>
-      <HeaderV002 />,
-      <SellerRegTabs />,
+      <SellerRegPortal />
       </>
       )
     },

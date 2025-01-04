@@ -1,70 +1,77 @@
-import { useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import axios from "axios";
 
-function SideBar({userRole}){
-    const [screens,setScreens] = useState([]);
+const Sidebar = ({ jwtToken }) => {
+  const [menuItems, setMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    const screenPathMap = {
-        Dashboard: "/dashboard",
-        Profile: "/profile",
-        Settings: "/settings",
-        Orders: "/orders",
-      };
+  useEffect(() => {
+    const fetchRoleAndMenu = async () => {
+      try {
+        setLoading(true);
+        
+        const jwtToken = localStorage.getItem('jwtToken');
 
-    useEffect(() => {
-        if (userRole) {
-          fetchScreensByRole(userRole);
+        if(!jwtToken){
+          alert("Session Expired. Please sign in again !!!")
+          return;
         }
-      }, [userRole]); 
-      
-    async function fetchScreensByRole(role) {
-        try {
-            const token = localStorage.getItem("jwtToken"); 
-            if (!token) {
-              alert("Please log in to proceed.");
-              return;
-            }
+        console.log("Jwt Token:" ,jwtToken);
 
-            const response = await axios.get(
-                `http://127.0.0.1:8085/screenAccess/screens/${role}`, 
-                {
-                  headers: {
-                    Authorization: `Bearer ${token}`, 
-                  },
-                }
-              );
+        const roleResponse = await axios.get("http://localhost:8085/user/roleByUser", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+          },
+        });
+        
+        const userRole = roleResponse.data;
+        console.log("Role Respo:", roleResponse);
+        console.log("User role:", userRole);
 
-              setScreens(response.data);
-    }catch(error){
-        alert("Failed to fetch screens. Please try again.");
-    }
-}
+        console.log('JWT token inside:', jwtToken);
 
-return (
-    <div className="SideBar">
-      <div className="MenuTab">MENU</div>
-      <ul className="sideBarlist">
-        {screens.map((screenName, index) => {
-          const path = screenPathMap[screenName]; 
-          if (!path) {
-            console.warn(`No path defined for screen: ${screenName}`);
-            return null;
-          }
+        const menuResponse = await axios.get(`http://localhost:8085/screenAccess/screens/${userRole}`, {
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+          },
+        });
 
-          return (
-            <li key={index} className="SideBarItems">
-              <Link to={path} className="icon-title">
-                <div className="Sidebar-title">{screenName}</div>
-              </Link>
-            </li>
-          );
-        })}
+        console.log(menuResponse.data[0]);
+        const menuData = await menuResponse.data[0];
+        setMenuItems(menuData);
+        console.log("Menu Items", menuItems);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRoleAndMenu();
+  }, [jwtToken]);
+
+  if (loading) {
+    return <div className="sidebar">Loading menu...</div>;
+  }
+
+  if (error) {
+    return <div className="sidebar">Error: {error}</div>;
+  }
+
+  return (
+    <div className="sidebar">
+      <ul>
+        {menuItems.map((item, index) => (
+          <li key={index}>
+            <Link to={item.path}>{item.name}</Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
-}
+};
 
-
-export default SideBar;
+export default Sidebar;

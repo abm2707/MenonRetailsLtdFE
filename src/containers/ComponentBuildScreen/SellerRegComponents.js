@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import SellerRegistrationScreen from "./SellerRegistrationTab";
-import SellerAccounts from "./SellerAccounts";
-import SellerValidations from "./SellerValidations";
-import SellerUploads from "./SellerUploads";
-//To Push the code
-export default function SellerRegTabs() {
+import SellerRegistrationScreen from "../SellerRegistration/SellerRegistrationTab";
+import SellerAccounts from "../SellerRegistration/SellerAccounts";
+import SellerValidations from "../SellerRegistration/SellerValidations";
+import SellerUploads from "../SellerRegistration/SellerUploads";
+
+export default function SellerRegTabs({onClose}) {
     const [showTab, setShowTab] = useState("Registration");
     const [fade, setFade] = useState(false); 
 
